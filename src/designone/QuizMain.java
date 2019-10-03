@@ -9,9 +9,8 @@ import java.util.HashMap;
  */
 public class QuizMain {
 
-    private int questionID;
-    private String questionData;
-    private int quizID;
+    HashMap<Integer, Quiz> quizMap;
+    HashMap<Integer, Question> questionMap;
     //TODO add instance variables here
 
     public QuizMain() {
@@ -25,36 +24,55 @@ public class QuizMain {
         Question four = new Question(4, "What is the capital of Iran?");
         Question five = new Question(5, "What is the capital of Estonia?");
 
-        HashMap<Integer, Question> questionMap = new HashMap<>();
+        questionMap = new HashMap<Integer, Question>();
         questionMap.put(1, one);
         questionMap.put(2, two);
         questionMap.put(3, three);
         questionMap.put(4, four);
         questionMap.put(5, five);
-
+/*
         ArrayList<Question> setOne = new ArrayList<>();
-        setOne.add(questionMap.get(1));
         setOne.add(questionMap.get(1));
         setOne.add(questionMap.get(2));
         setOne.add(questionMap.get(3));
-        setOne.add(questionMap.get(4));
+
 
         ArrayList<Question> setTwo = new ArrayList<>();
-        setTwo.add();
+        setTwo.add(questionMap.get(5));
+        setTwo.add(questionMap.get(5));
+        setTwo.add(questionMap.get(5));
+
+
 
         ArrayList<Question> setThree = new ArrayList<>();
-        setThree.add();
+        setThree.add(questionMap.get(2));
+        setThree.add(questionMap.get(3));
+        setThree.add(questionMap.get(4));
+*/
 
 
-        // TODO 2 Create three or more quizzes  use id 1,2,3...
+        //TODO 2 Create three or more quizzes  use id 1,2,3...
         //      (One quiz should share at least one question with another )
-        Quiz one = new Quiz(1, setOne);
-        Quiz two = new Quiz(2, setTwo);
-        Quiz three = new Quiz(3, setThree);
+        Quiz firstQuiz = new Quiz(1);
+        Quiz secondQuiz = new Quiz(2);
+        Quiz thirdQuiz = new Quiz(3);
 
         //Use hashmaps to store questions in a quiz, id is the key, string data is the value
+        quizMap = new HashMap<Integer, Quiz>();
+        quizMap.put(1, firstQuiz);
+        quizMap.get(1).addQuestion(questionMap.get(1));
+        quizMap.get(1).addQuestion(questionMap.get(2));
+        quizMap.get(1).addQuestion(questionMap.get(3));
 
+        quizMap.put(2, secondQuiz);
+        quizMap.get(2).addQuestion(questionMap.get(4));
+        quizMap.get(2).addQuestion(questionMap.get(4));
+        quizMap.get(2).addQuestion(questionMap.get(4));
 
+        quizMap.put(3, thirdQuiz);
+        quizMap.get(3).addQuestion(questionMap.get(2));
+        quizMap.get(3).addQuestion(questionMap.get(4));
+        quizMap.get(3).addQuestion(questionMap.get(5));
 
     }
 
@@ -77,8 +95,8 @@ public class QuizMain {
         // TODO 4 Change two quiz questions
         // A. (One should be shared with two or more quizzes)
         // B. (One should be unique to one quiz)
-        myQuizSimulator.handleUpdateQuizQuestion(1,"What is different 1?");
-        myQuizSimulator.handleUpdateQuizQuestion(2,"What is different 2?");
+        myQuizSimulator.handleUpdateQuizQuestion(1,"Question 1 changed right!!!?");
+        myQuizSimulator.handleUpdateQuizQuestion(2,"And so did question 2 Right!!!??");
 
 
         // TODO 5 Display the same three (or more) quizzes
@@ -102,7 +120,15 @@ public class QuizMain {
      */
     public void handleDisplayQuiz(int quizId) {
         //TODO complete this method
-        System.out.println();
+        System.out.println("Quiz: " + quizId);
+        ArrayList<Question> quizQuestions = quizMap.get(quizId).getQuestionsList();
+
+        for(Question thisProblem : quizQuestions){
+            //System.out.println("Question: " + thisProblem.getId());
+            System.out.println("Question[" + thisProblem.getId() + "]: " + thisProblem.getData());
+            System.out.println();
+        }
+
     }
 
     /**
@@ -114,6 +140,7 @@ public class QuizMain {
      */
     public void handleUpdateQuizQuestion(int questionId, String questionData) {
         //TODO complete this method
+        questionMap.get(questionId).updateQuestion(questionData);
     }
 
 }

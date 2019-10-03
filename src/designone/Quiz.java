@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * TODO This class should documented with a purpose!
+ * This class creates the quiz object which will store the an id and questions
  *
  *
  */
@@ -14,15 +14,38 @@ public class Quiz {
     private ArrayList<Question> questionsList;
 
 
-    public Quiz(int id, ArrayList<Question> questionsList){
+    /**
+     * This constructs the quiz objects and passes in a specific ID
+     * @param
+     */
+    public Quiz(int id){
 
         this.id = id;
-        this.questionsList = questionsList;
+        this.questionsList = new ArrayList<Question>();
 
     }
 
-    //Returns the ID of this quiz
-    public Quiz getQuiz(int id){
-        return null;
+    /***
+     * returns the ID of this quiz
+     * @return
+     */
+    public int getQuizID(){
+        return this.id;
+    }
+
+    /***
+     * adds a questions to an array list of type question
+     * @param addQuestion
+     */
+    public void addQuestion(Question addQuestion){
+        questionsList.add(addQuestion);
+    }
+
+    /***
+     * returns this array list of questions
+     * @return
+     */
+    public ArrayList<Question> getQuestionsList(){
+        return this.questionsList;
     }
 }
