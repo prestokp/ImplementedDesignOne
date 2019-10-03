@@ -33,7 +33,7 @@ public class Question {
 
     /***
      * returns the question id
-     * @return
+     * @return id
      */
     public int getId(){
         return this.id;
@@ -41,7 +41,7 @@ public class Question {
 
     /***
      * returns the string question data
-     * @return
+     * @return data
      */
     public String getData(){
         return this.data;
